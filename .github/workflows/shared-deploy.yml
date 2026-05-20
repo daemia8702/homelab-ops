@@ -29,15 +29,16 @@ jobs:
       - name: Setup Kustomize
         uses: imranismail/setup-kustomize@v2
 
-      - name: Update image tag
+      - name: Clone and Update GitOps Repository
         run: |
-          cd overlays/minikube
+          git clone https://x-access-token:${{ secrets.GITOPS_TOKEN }}@github.com/daemia8702/homelab-ops.git ops-dir  
+          cd ops-dir/overlays/minikube
+        
           kustomize edit set image image_placeholder=daemia8702/${{ inputs.app_name }}:${{ inputs.image_tag }}
-
-      - name: Commit changes
-        run: |
-          git config --global user.name "GitOps [BOT]"
-          git config --global user.email "gitops@company.com"
-          git add overlays/minikube/kustomization.yaml
+            
+          git config user.name "GitOps [BOT]"
+          git config user.email "gitops@company.com"
+            
+          git add kustomization.yaml
           git commit -m "Automated deploy: ${{ inputs.app_name }} to tag ${{ inputs.image_tag }}"
           git push origin main
