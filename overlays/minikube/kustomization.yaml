@@ -12,4 +12,4 @@ resources:
 images:
   - name: image_placeholder
     newName: daemia8702/homelab-app
-    newTag: v1.0.0 # <-- Ezt írja át a pipeline a commit hash-re (pl. 7a8b9c2)
+    newTag: 0.0.7 # <-- Ezt írja át a pipeline a commit hash-re (pl. 7a8b9c2)
