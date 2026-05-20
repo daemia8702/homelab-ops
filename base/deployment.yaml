@@ -24,7 +24,7 @@ spec:
             - containerPort: 8080
           env:
             - name: DB_DATASOURCE
-              value: jdbc:postgresql://db:5432/homelab
+              value: jdbc:postgresql://postgres:5432/homelab
             - name: DB_USERNAME
               value: daemia
             - name: DB_PASSWORD
