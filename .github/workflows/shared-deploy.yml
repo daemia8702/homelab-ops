@@ -1,0 +1,33 @@
+name: shared-deploy.yml
+on:
+  workflow_call:
+    inputs:
+      app_name:
+        required: true
+        type: string
+      image_tag:
+        required: true
+        type: string
+jobs:
+  update-gitops:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v2
+
+      - name: Update image tag
+        run: |
+          cd overlays/minikube
+          kustomize edit set image image_placeholder=daemia8702/${{ inputs.app_name }}:${{ inputs.image_tag }}
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "GitOps [BOT]"
+          git config --global user.email "gitops@company.com"
+          git add overlays/minikube/kustomization.yaml
+          git commit -m "Automated deploy: ${{ inputs.app_name }} to tag ${{ inputs.image_tag }}"
+          git push origin main
