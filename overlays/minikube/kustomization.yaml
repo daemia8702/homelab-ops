@@ -5,12 +5,12 @@ namespace: homelab
 
 # Beolvassuk a közös alapot ÉS a helyi titkosított jelszót is
 resources:
-  - ../../base
-  - sealed-secret.yaml
-  - postgres-pvc.yaml
+- ../../base
+- sealed-secret.yaml
+- postgres-pvc.yaml
 
 # Ezt a részt írja felül a GitHub Actions shared pipeline-ja
 images:
-  - name: image_placeholder
-    newName: daemia8702/homelab-app
-    newTag: 0.0.7 # <-- Ezt írja át a pipeline a commit hash-re (pl. 7a8b9c2)
+- name: image_placeholder
+  newName: daemia8702/homelab-app
+  newTag: 0.0.8
