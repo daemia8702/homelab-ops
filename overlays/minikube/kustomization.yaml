@@ -8,6 +8,7 @@ resources:
 - ../../base
 - sealed-secret.yaml
 - postgres-pvc.yaml
+- postgres-pv.yaml
 
 # Ezt a részt írja felül a GitHub Actions shared pipeline-ja
 images:
