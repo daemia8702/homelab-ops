@@ -27,3 +27,5 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true # Az ArgoCD magától létrehozza a 'monitoring' névteret
+      - SkipDryRunOnMissingResource=true
+      - ServerSideApply=true
